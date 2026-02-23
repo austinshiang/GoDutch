@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>旅の帳面 - 分帳助手</title>
+    <title>北海道冬雪 - 旅遊分帳</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { 
-            --sakura: #fef2f4; /* 櫻花淺粉 */
-            --kimono-pink: #f6adbe; /* 和服粉 */
-            --matcha: #88a04e; /* 抹茶綠 */
-            --washi: #fffaf0; /* 和紙白 */
-            --ink: #333333; /* 墨黑 */
-            --gold: #d4af37; /* 和風金 */
-            --up: #6b8e23;
-            --down: #cd5c5c;
+            --snow-white: #ffffff;
+            --ice-blue: #e3f2fd;
+            --crystal-blue: #90caf9;
+            --deep-ocean: #1a237e;
+            --matcha-green: #43a047; /* 用於成功按鈕 */
+            --danger-red: #d32f2f;
+            --gold: #fbc02d;
+            --silver: #9e9e9e;
+            --bronze: #a1887f;
         }
         body { 
-            font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Microsoft JhengHei", sans-serif; 
-            background: var(--washi); 
-            color: var(--ink);
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; 
+            background: linear-gradient(180deg, var(--ice-blue) 0%, var(--snow-white) 100%); 
+            color: var(--deep-ocean);
             margin: 0; 
             padding-bottom: 80px; 
+            min-height: 100vh;
         }
         header { 
-            background: var(--kimono-pink); 
+            background: var(--deep-ocean); 
             color: white; 
             padding: 20px; 
             text-align: center; 
             font-weight: bold; 
             letter-spacing: 2px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-bottom: 3px solid var(--crystal-blue);
         }
         
         .page { display: none; padding: 15px; animation: fadeIn 0.4s ease-out; }
@@ -38,83 +41,92 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .card { 
-            background: white; 
-            border-radius: 15px; 
+            background: rgba(255, 255, 255, 0.9); 
+            border-radius: 16px; 
             padding: 20px; 
             margin-bottom: 20px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid #f0e6d2;
+            box-shadow: 0 8px 16px rgba(26, 35, 126, 0.05);
+            border: 1px solid rgba(144, 202, 249, 0.3);
+            backdrop-filter: blur(5px);
         }
         h3 { 
-            margin-top: 0; font-size: 1.1em; color: var(--matcha); 
-            border-bottom: 2px solid var(--sakura); 
-            padding-bottom: 8px; margin-bottom: 15px; 
+            margin-top: 0; font-size: 1.1em; color: var(--deep-ocean); 
+            border-bottom: 2px solid var(--ice-blue); 
+            padding-bottom: 8px; margin-bottom: 15px;
+            display: flex; align-items: center; gap: 8px;
         }
         
         .form-group { margin-bottom: 18px; }
-        label { display: block; font-size: 0.85em; color: #888; margin-bottom: 8px; font-weight: bold; }
+        label { display: block; font-size: 0.85em; color: #5c6bc0; margin-bottom: 8px; font-weight: bold; }
         input, select { 
-            width: 100%; padding: 12px; border: 1px solid #e2e2e2; 
+            width: 100%; padding: 12px; border: 1.5px solid #d1d9e6; 
             border-radius: 10px; box-sizing: border-box; font-size: 16px;
-            background: #fff;
+            background: #fff; transition: 0.3s;
         }
-        input:focus { outline: none; border-color: var(--kimono-pink); }
+        input:focus { outline: none; border-color: var(--crystal-blue); box-shadow: 0 0 8px rgba(144, 202, 249, 0.4); }
         
-        .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; background: var(--sakura); padding: 12px; border-radius: 10px; }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; background: var(--ice-blue); padding: 12px; border-radius: 10px; }
         .checkbox-item { 
             display: flex; align-items: center; background: white; 
-            padding: 6px 12px; border-radius: 20px; border: 1px solid #eee; font-size: 0.9em; 
+            padding: 6px 12px; border-radius: 20px; border: 1px solid #bbdefb; font-size: 0.9em; 
         }
         .checkbox-item input { width: auto; margin-right: 6px; }
 
         .btn { 
-            background: var(--matcha); color: white; border: none; 
-            padding: 16px; border-radius: 30px; width: 100%; 
+            background: var(--deep-ocean); color: white; border: none; 
+            padding: 16px; border-radius: 12px; width: 100%; 
             font-size: 16px; font-weight: bold; cursor: pointer;
-            box-shadow: 0 4px 0 #6d803e;
+            transition: all 0.2s;
         }
-        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #6d803e; }
-        .btn:disabled { background: #ccc; box-shadow: none; }
+        .btn:active { transform: scale(0.98); opacity: 0.9; }
+        .btn:disabled { background: #9fa8da; cursor: not-allowed; }
         
-        .item-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--sakura); font-size: 0.9em; align-items: center; }
+        .item-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--ice-blue); font-size: 0.9em; align-items: center; }
         
-        .rank-badge { width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 8px; color: white; font-size: 0.75em; }
-        .rank-1 { background: var(--gold); }
+        /* 排行榜裝飾 */
+        .rank-badge { width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; color: white; font-weight: bold; font-size: 0.8em; }
+        .rank-1 { background: var(--gold); box-shadow: 0 0 8px rgba(251, 192, 45, 0.5); }
         .rank-2 { background: var(--silver); }
         .rank-3 { background: var(--bronze); }
 
         .settle-box { 
             background: #fff; padding: 15px; border-radius: 12px; 
-            margin-bottom: 12px; border: 1px solid var(--sakura); 
+            margin-bottom: 12px; border: 1px solid var(--ice-blue); 
             display: flex; align-items: center; justify-content: space-between; 
         }
-        .settle-name { font-weight: bold; padding: 5px 12px; border-radius: 20px; font-size: 0.85em; }
-        .name-pay { color: var(--down); background: #fff5f5; border: 1px solid #ffc1c1; }
-        .name-get { color: var(--up); background: #f0fff4; border: 1px solid #b7ebc6; }
+        .settle-name { font-weight: bold; padding: 6px 14px; border-radius: 8px; font-size: 0.85em; }
+        .name-pay { color: var(--danger-red); background: #ffebee; border: 1px solid #ffcdd2; }
+        .name-get { color: var(--matcha-green); background: #e8f5e9; border: 1px solid #c8e6c9; }
         
         nav { 
-            position: fixed; bottom: 0; width: 100%; background: white; 
-            display: flex; border-top: 1px solid #eee; height: 70px; 
-            box-shadow: 0 -2px 15px rgba(0,0,0,0.05);
+            position: fixed; bottom: 0; width: 100%; background: var(--snow-white); 
+            display: flex; border-top: 1px solid #e3f2fd; height: 70px; 
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
         }
-        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #bbb; cursor: pointer; }
-        .nav-item.active { color: var(--kimono-pink); }
-        .nav-item i { font-size: 20px; margin-bottom: 4px; }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #9fa8da; cursor: pointer; }
+        .nav-item.active { color: var(--deep-ocean); }
+        .nav-item i { font-size: 22px; margin-bottom: 4px; }
         
-        #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,250,240,0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; visibility: hidden; }
+        #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; visibility: hidden; }
+        
+        .snow-bg { position: fixed; top: 0; pointer-events: none; z-index: -1; opacity: 0.5; }
     </style>
 </head>
 <body>
 
-<div id="loading-overlay"><i class="fas fa-fan fa-spin fa-2x" style="color:var(--kimono-pink)"></i><p>読み込み中...</p></div>
+<div id="loading-overlay">
+    <i class="fas fa-snowflake fa-spin fa-3x" style="color:var(--crystal-blue)"></i>
+    <p style="margin-top:15px; font-weight:bold;">同步雲端資料中...</p>
+</div>
 
-<header id="h-title">旅の帳面</header>
+<header id="h-title">北海道冬雪分帳</header>
 
 <div id="p-input" class="page active">
     <div class="card">
+        <h3><i class="fas fa-edit"></i> 支出登錄</h3>
         <div class="form-group">
-            <label>付款人 </label>
-            <input type="text" id="payer" list="name-list" placeholder="請輸入姓名">
+            <label>付款人</label>
+            <input type="text" id="payer" list="name-list" placeholder="輸入名字，系統會自動記住">
             <datalist id="name-list"></datalist>
         </div>
         
@@ -123,54 +135,54 @@
             <div style="display: flex; gap: 8px;">
                 <input type="number" id="amount" placeholder="0" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="flex:2">
                 <select id="currency" style="flex:1" onchange="updateRateUI()">
-                    <option value="TWD">台幣 (NTD)</option>
+                    <option value="TWD">台幣 (TWD)</option>
                     <option value="JPY" selected>日幣 (JPY)</option>
                 </select>
             </div>
-            <div id="rate-display" style="font-size: 11px; color: var(--gold); margin-top: 8px; font-weight: bold;"></div>
+            <div id="rate-display" style="font-size: 11px; color: var(--deep-ocean); margin-top: 8px; font-weight: bold; background: var(--ice-blue); padding: 5px; border-radius: 5px; text-align: center;"></div>
         </div>
 
         <div class="form-group">
-            <label>支出項目</label>
-            <input type="text" id="item" placeholder="例如：機票、午餐、">
+            <label>項目說明</label>
+            <input type="text" id="item" placeholder="例如：機票、滑雪租借、鱈場蟹、暫借款">
         </div>
 
         <div class="form-group">
-            <label>參與成員</label>
+            <label>分帳成員 (參與本次消費的人)</label>
             <div id="members-area" class="checkbox-group"></div>
             <div style="display: flex; gap: 8px; margin-top: 12px;">
-                <input type="text" id="new-member" placeholder="新增姓名" style="padding: 10px;">
-                <button type="button" onclick="addNewMember()" style="width: 50px; border-radius: 10px; border: 1px solid #ddd; background: #fff;">+</button>
+                <input type="text" id="new-member" placeholder="新增新名字" style="padding: 10px;">
+                <button type="button" onclick="addNewMember()" style="width: 50px; border-radius: 10px; border: 1px solid #bbdefb; background: #fff; color:var(--deep-ocean)"><i class="fas fa-user-plus"></i></button>
             </div>
         </div>
 
-        <button class="btn" id="save-btn" onclick="addRecord()">保存紀錄</button>
+        <button class="btn" id="save-btn" onclick="addRecord()">存入雲端資料庫</button>
     </div>
 </div>
 
 <div id="p-status" class="page">
     <div class="card">
-        <h3>🚀 最短還款方案 (TWD)</h3>
+        <h3><i class="fas fa-snowflake"></i> 最短還款方案 (台幣)</h3>
         <div id="settlement-plan"></div>
     </div>
     <div class="card">
-        <h3>🏆 墊付貢獻排行</h3>
+        <h3><i class="fas fa-crown"></i> 墊付金額排行榜</h3>
         <div id="payment-summary"></div>
     </div>
     <div class="card">
-        <h3>📊 損益清單</h3>
+        <h3><i class="fas fa-chart-pie"></i> 個人損益清單</h3>
         <div id="personal-summary"></div>
     </div>
-    <div class="card" style="background: var(--sakura);">
-        <h3>📜 歷史紀錄</h3>
+    <div class="card" style="background: rgba(227, 242, 253, 0.5);">
+        <h3><i class="fas fa-history"></i> 詳細歷史紀錄</h3>
         <div id="history-list"></div>
     </div>
-    <button class="btn" style="background: var(--kimono-pink); box-shadow: 0 4px 0 #d18d9b;" onclick="initData()">同步雲端資料</button>
+    <button class="btn" style="background: var(--crystal-blue);" onclick="initData()">同步最新數據</button>
 </div>
 
 <nav>
-    <div class="nav-item active" onclick="switchPage('input')"><i class="fas fa-pen-nib"></i><span>記帳</span></div>
-    <div class="nav-item" onclick="switchPage('status')"><i class="fas fa-calculator"></i><span>結算</span></div>
+    <div class="nav-item active" onclick="switchPage('input')"><i class="fas fa-pen-fancy"></i><span>記帳</span></div>
+    <div class="nav-item" onclick="switchPage('status')"><i class="fas fa-coins"></i><span>結算</span></div>
 </nav>
 
 <script>
@@ -189,7 +201,7 @@
                 date: row[0] ? new Date(row[0]).toLocaleString('zh-TW', {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'}) : '',
                 payer: row[1],
                 item: row[2],
-                amount: Math.ceil(parseFloat(row[3])), // 雲端金額抓取也進位
+                amount: Math.ceil(parseFloat(row[3])), 
                 curr: row[4],
                 members: JSON.parse(row[5])
             }));
@@ -225,26 +237,25 @@
         const curr = document.getElementById('currency').value;
         const checkedMembers = Array.from(document.querySelectorAll('input[name="member-check"]:checked')).map(el => el.value);
 
-        if(!payer || !amount || checkedMembers.length === 0) return alert('請檢查您的輸入');
+        if(!payer || !amount || checkedMembers.length === 0) return alert('請完整填寫付款人、金額與成員');
 
-        // 日幣換算台幣並無條件進位
         let twdAmount = amount;
         if(curr === 'JPY') {
             twdAmount = Math.ceil(amount * jpyRate);
-            if(!confirm(`日幣 ${amount} 円 將換算為 台幣 ${twdAmount} 元\n(匯率: ${jpyRate})`)) return;
+            if(!confirm(`日幣 ¥${amount} 將換算為 台幣 $${twdAmount}\n(依匯率 ${jpyRate} 計算，並無條件進位)`)) return;
         }
 
         const payload = { payer, item, amount: twdAmount, curr, members: checkedMembers };
         const btn = document.getElementById('save-btn');
-        btn.disabled = true; btn.innerText = "保存中...";
+        btn.disabled = true; btn.innerText = "資料傳送中...";
 
         try {
             await fetch(GAS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-            alert('成功！');
+            alert('紀錄儲存成功！');
             location.reload();
         } catch (e) {
-            alert('發生錯誤');
-            btn.disabled = false; btn.innerText = "記録保存";
+            alert('網路連線錯誤');
+            btn.disabled = false; btn.innerText = "存入雲端資料庫";
         }
     }
 
@@ -258,26 +269,23 @@
             totalPaid[r.payer] += r.amount;
             balances[r.payer] += r.amount;
             r.members.forEach(m => { balances[m] = (balances[m] || 0) - share; });
-            historyDiv.innerHTML += `<div class="item-row"><div><b>${r.payer}: ${r.item}</b><br><small style="color:#aaa">${r.date}</small></div><span>$${Math.ceil(r.amount)}</span></div>`;
+            historyDiv.innerHTML += `<div class="item-row"><div><b>${r.payer}: ${r.item}</b><br><small style="color:#7986cb">${r.date}</small></div><span>$${Math.ceil(r.amount)}</span></div>`;
         });
 
-        // 排行榜渲染
         const sortedPayments = Object.entries(totalPaid).filter(e => e[1] > 0).sort((a,b) => b[1] - a[1]);
         const payDiv = document.getElementById('payment-summary'); payDiv.innerHTML = '';
         sortedPayments.forEach(([name, amt], idx) => {
             let badgeClass = idx < 3 ? `rank-${idx+1}` : '';
-            payDiv.innerHTML += `<div class="item-row"><span><span class="rank-badge ${badgeClass}" style="${idx>=3?'background:#ddd':''}">${idx+1}</span>${name}</span><span style="color:var(--gold);font-weight:bold;">$${Math.ceil(amt)}</span></div>`;
+            payDiv.innerHTML += `<div class="item-row"><span><span class="rank-badge ${badgeClass}" style="${idx>=3?'background:#c5cae9':''}">${idx+1}</span>${name}</span><span style="color:var(--deep-ocean);font-weight:bold;">$${Math.ceil(amt)}</span></div>`;
         });
 
-        // 損益渲染
         const summaryDiv = document.getElementById('personal-summary'); summaryDiv.innerHTML = '';
         for (let name in balances) {
             const b = Math.ceil(balances[name]);
             if (Math.abs(b) < 1) continue;
-            summaryDiv.innerHTML += `<div class="item-row"><span>${name}</span><span style="color:${b > 0 ? 'var(--up)' : 'var(--down)'};font-weight:bold;">${b > 0 ? '應收' : '應付'} $${Math.abs(b)}</span></div>`;
+            summaryDiv.innerHTML += `<div class="item-row"><span>${name}</span><span style="color:${b > 0 ? 'var(--matcha-green)' : 'var(--danger-red)'};font-weight:bold;">${b > 0 ? '應收' : '應付'} $${Math.abs(b)}</span></div>`;
         }
 
-        // 最短方案 (無條件進位)
         const planDiv = document.getElementById('settlement-plan'); planDiv.innerHTML = '';
         let debtors = [], creditors = [];
         for (let n in balances) {
@@ -287,10 +295,11 @@
         while(debtors.length && creditors.length) {
             debtors.sort((a,b) => b.amt - a.amt); creditors.sort((a,b) => b.amt - a.amt);
             let d = debtors[0], c = creditors[0], settle = Math.ceil(Math.min(d.amt, c.amt));
-            planDiv.innerHTML += `<div class="settle-box"><span class="settle-name name-pay">${d.n}</span><div style="text-align:center;flex:1"><i class="fas fa-chevron-right" style="color:#eee"></i><div style="font-weight:bold;font-size:1.1em">$${settle}</div></div><span class="settle-name name-get">${c.n}</span></div>`;
+            planDiv.innerHTML += `<div class="settle-box"><span class="settle-name name-pay">${d.n}</span><div style="text-align:center;flex:1"><i class="fas fa-snowflake" style="color:var(--crystal-blue); font-size:12px"></i><div style="font-weight:bold;font-size:1.1em; color:var(--deep-ocean)">$${settle}</div></div><span class="settle-name name-get">${c.n}</span></div>`;
             d.amt -= settle; c.amt -= settle;
             if(d.amt <= 0) debtors.shift(); if(c.amt <= 0) creditors.shift();
         }
+        if(!planDiv.innerHTML) planDiv.innerHTML = "<p style='color:#9fa8da; text-align:center;'>帳目已全數清空</p>";
     }
 
     async function fetchRate() {
@@ -298,7 +307,7 @@
             const res = await fetch('https://open.er-api.com/v6/latest/JPY');
             const data = await res.json();
             jpyRate = data.rates.TWD;
-            document.getElementById('rate-display').innerText = `【即時為替】1 JPY ≈ ${jpyRate.toFixed(4)} TWD`;
+            document.getElementById('rate-display').innerText = `目前匯率：1 JPY ≈ ${jpyRate.toFixed(4)} TWD`;
         } catch (e) { document.getElementById('rate-display').innerText = `預設匯率 0.21`; }
     }
 
@@ -308,11 +317,11 @@
         if(p === 'input') {
             document.getElementById('p-input').classList.add('active');
             document.querySelectorAll('.nav-item')[0].classList.add('active');
-            document.getElementById('h-title').innerText = "旅の帳面";
+            document.getElementById('h-title').innerText = "北海道旅行分帳";
         } else {
             document.getElementById('p-status').classList.add('active');
             document.querySelectorAll('.nav-item')[1].classList.add('active');
-            document.getElementById('h-title').innerText = "結算中心";
+            document.getElementById('h-title').innerText = "費用結算";
             calculateAll();
         }
     }
