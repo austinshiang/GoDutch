@@ -53,64 +53,42 @@
     </nav>
 
     <main class="p-4">
-       <div id="flights" class="tab-content active space-y-4">
+        <div id="flights" class="tab-content active space-y-4">
             <div class="flex p-1 bg-gray-100 rounded-lg mb-4">
                 <button onclick="toggleFlightGroup('direct')" id="btn-direct" class="flex-1 py-2 text-xs font-bold rounded-md bg-white shadow-sm text-blue-600">直飛組</button>
                 <button onclick="toggleFlightGroup('transfer')" id="btn-transfer" class="flex-1 py-2 text-xs font-bold rounded-md text-gray-500">轉機組</button>
             </div>
-            <!-- Direct Group -->
             <div id="group-direct" class="flight-group active space-y-4">
                 <div class="bg-blue-50 border border-blue-100 rounded-2xl p-4 shadow-sm">
                     <h3 class="font-bold text-blue-800 mb-2">去程：酷航 TR 892</h3>
                     <p class="text-[10px] font-bold text-blue-500 mb-2 uppercase tracking-widest">3月13日 (五)</p>
                     <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow-inner mb-2 border border-blue-100">
-                        <div class="text-center">
-                            <span class="block font-black text-xl">06:20</span>
-                            <span class="text-[10px] text-gray-400">TPE 桃園 T1</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">06:20</span><span class="text-[10px] text-gray-400">TPE 桃園 T1</span></div>
                         <div class="text-blue-300 text-lg">✈️</div>
-                        <div class="text-center">
-                            <span class="block font-black text-xl">11:00</span>
-                            <span class="text-[10px] text-gray-400">CTS 新千歲</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">11:00</span><span class="text-[10px] text-gray-400">CTS 新千歲</span></div>
                     </div>
                     <p class="text-[10px] text-red-500 font-black bg-red-50 p-2 rounded text-center">🚨 04:30 以前需抵達 T1 櫃檯報到</p>
                 </div>
-
                 <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 shadow-sm">
                     <h3 class="font-bold text-slate-800 mb-2">回程：酷航 TR 893</h3>
                     <p class="text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest">3月17日 (二)</p>
                     <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow-inner mb-2 border border-slate-100">
-                        <div class="text-center">
-                            <span class="block font-black text-xl">18:40</span>
-                            <span class="text-[10px] text-gray-400">CTS 新千歲</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">18:40</span><span class="text-[10px] text-gray-400">CTS 新千歲</span></div>
                         <div class="text-slate-300 text-lg">✈️</div>
-                        <div class="text-center">
-                            <span class="block font-black text-xl">22:15</span>
-                            <span class="text-[10px] text-gray-400">TPE 桃園 T1</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">22:15</span><span class="text-[10px] text-gray-400">TPE 桃園 T1</span></div>
                     </div>
                     <p class="text-[10px] text-red-500 font-black bg-red-50 p-2 rounded text-center">🚨 16:20 以前需抵達櫃檯報到</p>
                 </div>
             </div>
-
-            <!-- Transfer Group -->
             <div id="group-transfer" class="flight-group space-y-4">
                 <div class="bg-blue-50 border border-blue-200 rounded-2xl p-4 shadow-sm relative overflow-hidden">
                     <div class="absolute right-0 top-0 bg-blue-600 text-white text-[9px] px-3 py-1 font-bold">去程 1/2</div>
                     <h3 class="font-bold text-blue-800 mb-1">酷航 TR 874</h3>
                     <p class="text-[10px] font-bold text-blue-500 mb-2">3月12日 (四)</p>
                     <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow-inner mb-2 border border-blue-100">
-                        <div class="text-center">
-                            <span class="block font-black text-xl">14:00</span>
-                            <span class="text-[10px] text-gray-400 font-medium">TPE 桃園 T1</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">14:00</span><span class="text-[10px] text-gray-400 font-medium">TPE 桃園 T1</span></div>
                         <div class="text-blue-400">✈️</div>
-                        <div class="text-center">
-                            <span class="block font-black text-xl">18:00</span>
-                            <span class="text-[10px] text-gray-400 font-medium">HND 羽田/東京</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">18:00</span><span class="text-[10px] text-gray-400 font-medium">HND 羽田/東京</span></div>
                     </div>
                     <p class="text-[10px] text-red-500 font-black bg-red-50 p-2 rounded text-center">🚨 12:00 以前需抵達櫃檯報到</p>
                 </div>
@@ -119,40 +97,26 @@
                     <h3 class="font-bold text-indigo-800 mb-1">全日空 NH 053</h3>
                     <p class="text-[10px] font-bold text-indigo-500 mb-2">3月13日 (五)</p>
                     <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow-inner border border-indigo-100">
-                        <div class="text-center">
-                            <span class="block font-black text-xl">08:00</span>
-                            <span class="text-[10px] text-gray-400 font-medium">HND 羽田機場</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">08:00</span><span class="text-[10px] text-gray-400 font-medium">HND 羽田機場</span></div>
                         <div class="text-indigo-400">✈️</div>
-                        <div class="text-center">
-                            <span class="block font-black text-xl">09:30</span>
-                            <span class="text-[10px] text-gray-400 font-medium">CTS 新千歲</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">09:30</span><span class="text-[10px] text-gray-400 font-medium">CTS 新千歲</span></div>
                     </div>
-                    <p class="text-[10px] text-red-500 font-black bg-red-50 p-2 rounded text-center">🚨 06:30 以前需抵達櫃檯報到</p>
+			<p class="text-[10px] text-red-500 font-black bg-red-50 p-2 rounded text-center">🚨 06:00 以前需抵達櫃檯報到</p>
                 </div>
-                <!-- 補回轉機組回程 -->
                 <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 shadow-sm relative overflow-hidden">
                     <div class="absolute right-0 top-0 bg-slate-600 text-white text-[9px] px-3 py-1 font-bold">回程</div>
                     <h3 class="font-bold text-slate-800 mb-1">酷航 TR 893</h3>
                     <p class="text-[10px] font-bold text-slate-500 mb-2">3月17日 (二)</p>
                     <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow-inner mb-2 border border-slate-100">
-                        <div class="text-center">
-                            <span class="block font-black text-xl">18:40</span>
-                            <span class="text-[10px] text-gray-400 font-medium">CTS 新千歲</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">18:40</span><span class="text-[10px] text-gray-400 font-medium">CTS 新千歲</span></div>
                         <div class="text-slate-400">✈️</div>
-                        <div class="text-center">
-                            <span class="block font-black text-xl">22:15</span>
-                            <span class="text-[10px] text-gray-400 font-medium">TPE 桃園 T1</span>
-                        </div>
+                        <div class="text-center"><span class="block font-black text-xl">22:15</span><span class="text-[10px] text-gray-400 font-medium">TPE 桃園 T1</span></div>
                     </div>
                     <p class="text-[10px] text-red-500 font-black bg-red-50 p-2 rounded text-center">🚨 16:20 以前需抵達 T1 櫃檯報到</p>
                 </div>
             </div>
         </div>
 
-        
         <div id="checklist" class="tab-content">
             <h3 class="category-title">🪪 證件與重要物品</h3>
             <div class="space-y-2 bg-blue-50 p-4 rounded-xl mb-4">
@@ -201,6 +165,9 @@
                 <label class="flex items-start space-x-3"><input type="checkbox" class="checkbox-item mt-1 w-5 h-5 rounded"><span class="text-sm font-medium">OK繃 / 簡易急救包</span></label>
                 <label class="flex items-start space-x-3"><input type="checkbox" class="checkbox-item mt-1 w-5 h-5 rounded"><span class="text-sm font-medium">隱形眼鏡及用品（如需要） </span></label>
             </div>
+            <div class="bg-gray-100 p-3 rounded-lg text-[10px] text-gray-500">
+                <strong>註：更新頁面可能會導致勾選消失，請做最後檢核表使用。
+            </div>
         </div>
 
 
@@ -232,7 +199,7 @@
             <div class="bg-gray-100 p-3 rounded-lg text-[10px] text-gray-500">
                 註：行動電源不可標示不清。日本海關檢查嚴格，建議先將行動電源標籤加固。
             </div>
-<div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl">
+            <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl">
                 <h3 class="font-bold text-amber-800 text-sm mb-2">⚠️ 海關提醒</h3>
 <ul class="text-xs space-y-2 opacity-95">
                     <li>• <strong>肉類製品：</strong>香腸、火腿、肉乾、臘肉、肉鬆、牛肉乾、罐裝肉。</li>
@@ -240,10 +207,8 @@
                     <li>• <strong>所有生鮮水果、蔬菜：</strong>蕉、葡萄、蘋果、生菜、馬鈴薯、蒜頭。</li>
                     <li>• <strong>高風險蛋製品：</strong>生蛋、半熟蛋、溏心蛋、未檢疫鹹蛋、茶葉蛋。</li>
                     <li>• <strong> 寵物食品：</strong>大多含肉類。</li>
-<ul class="text-xs space-y-2 opacity-95">
-嚴禁攜帶入境台灣。初犯即罰新台幣 20 萬元，再犯即開罰 100 萬元。</p>
+                <p class="text-xs text-red-600 font-bold">嚴禁攜帶入境台灣。初犯即罰新台幣 20 萬元，再犯即開罰 100 萬元。</p>
             </div>
-
         </div>
 
         <div id="itinerary" class="tab-content">
@@ -251,42 +216,34 @@
         </div>
 
         <div id="splitting" class="tab-content space-y-4">
-            <div class="snow-card bg-emerald-50 border-emerald-100">
-                <h3 class="font-bold text-emerald-800 mb-2 text-sm flex items-center justify-between">
-                    <span><i class="fas fa-cloud mr-2"></i> 雲端同步狀態</span>
-                    <span id="sync-status" class="text-[10px] bg-white px-2 py-0.5 rounded text-gray-400 font-mono">STANDBY</span>
-                </h3>
-                <button onclick="downloadFromCloud()" class="w-full bg-white border border-emerald-600 text-emerald-600 text-[11px] font-bold p-2 rounded-lg">手動刷新數據</button>
-            </div>
-
             <div class="snow-card w-full box-border overflow-hidden">
-    <h3 class="font-bold text-blue-800 mb-4 text-sm"><i class="fas fa-edit mr-2"></i> 支出登錄</h3>
-    <div class="space-y-3">
-        <input type="text" id="payer" list="name-list" class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 outline-none" placeholder="誰付錢？">
-        <datalist id="name-list"></datalist>
+                <h3 class="font-bold text-blue-800 mb-4 text-sm"><i class="fas fa-edit mr-2"></i> 支出登錄</h3>
+                <div class="space-y-3">
+                    <select id="payer" class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 outline-none bg-white">
+                        <option value="" disabled selected>誰付錢？</option>
+                    </select>
 
-        <div class="flex gap-2 w-full">
-            <input type="number" id="amount" class="min-w-0 flex-1 p-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 outline-none" placeholder="金額" inputmode="numeric">
-            <select id="currency" onchange="updateRateUI()" class="w-[85px] shrink-0 p-3 border border-gray-200 rounded-xl text-[12px] bg-gray-50 font-bold">
-                <option value="TWD">台幣</option>
-                <option value="JPY" selected>日幣</option>
-            </select>
-        </div>
-
-        <div id="rate-display" class="text-[10px] text-blue-600 font-bold text-center bg-blue-50 py-1 rounded-lg">匯率讀取中...</div>
-
-        <input type="text" id="item" class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 outline-none" placeholder="項目說明">
-
-        <div id="members-area" class="flex flex-wrap gap-2 bg-slate-50 p-3 rounded-xl border border-dashed border-gray-300 min-h-[50px]"></div>
-
-        <button onclick="addRecord()" id="save-btn" class="w-full bg-blue-600 text-white font-bold p-4 rounded-xl shadow-lg active:scale-95 transition-all text-sm">確認送出並同步</button>
-    </div>
-</div>
+                    <div class="flex gap-2 w-full">
+                        <input type="number" id="amount" class="min-w-0 flex-1 p-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 outline-none" placeholder="金額" inputmode="numeric">
+                        <select id="currency" onchange="updateRateUI()" class="w-[85px] shrink-0 p-3 border border-gray-200 rounded-xl text-[12px] bg-gray-50 font-bold">
+                            <option value="TWD">台幣</option>
+                            <option value="JPY" selected>日幣</option>
+                        </select>
+                    </div>
+                    <div id="rate-display" class="text-[10px] text-blue-600 font-bold text-center bg-blue-50 py-1 rounded-lg">匯率讀取中...</div>
+                    <input type="text" id="item" class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 outline-none" placeholder="項目說明">
+                    <div id="members-area" class="flex flex-wrap gap-2 bg-slate-50 p-3 rounded-xl border border-dashed border-gray-300 min-h-[50px]"></div>
+                    <button onclick="addRecord()" id="save-btn" class="w-full bg-blue-600 text-white font-bold p-4 rounded-xl shadow-lg active:scale-95 transition-all text-sm">確認送出並同步</button>
+                </div>
+            </div>
 
             <div id="calculation-results" class="space-y-4">
                 <div class="snow-card bg-blue-50 border-blue-100">
                     <h3 class="font-bold text-blue-900 mb-3 text-sm flex items-center"><i class="fas fa-snowflake mr-2"></i> 最短還款方案 (台幣)</h3>
                     <div id="settlement-plan" class="space-y-2"></div>
+                    <div class="mt-3 text-center text-[10px] text-red-500 font-bold italic">
+                        ※ 所有匯率與分帳小數點皆以無條件進位
+                    </div>
                 </div>
 
                 <div class="snow-card">
@@ -295,27 +252,31 @@
                 </div>
 
                 <div class="snow-card">
-                    <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center"><i class="fas fa-chart-pie mr-2"></i> 個人損益</h3>
+                    <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center"><i class="fas fa-chart-pie mr-2"></i> 個人收支</h3>
                     <div id="personal-summary" class="text-xs space-y-2"></div>
                 </div>
 
                 <div class="snow-card bg-slate-50">
                     <h3 class="font-bold text-gray-500 mb-3 text-sm flex items-center justify-between">
                         <span><i class="fas fa-history mr-2"></i> 詳細歷史紀錄</span>
-                        <button onclick="clearRecords()" class="text-red-400 font-normal text-[10px]">清空</button>
+                        <button onclick="clearRecords()" class="text-red-400 font-normal text-[10px]"></button>
                     </h3>
                     <div id="history-list" class="divide-y divide-gray-200"></div>
+                </div>
+
+                <div class="snow-card bg-emerald-50 border-emerald-100">
+                    <h3 class="font-bold text-emerald-800 mb-2 text-sm flex items-center justify-between">
+                        <span><i class="fas fa-cloud mr-2"></i> 雲端同步狀態</span>
+                        <span id="sync-status" class="text-[10px] bg-white px-2 py-0.5 rounded text-gray-400 font-mono">STANDBY</span>
+                    </h3>
+                    <button onclick="downloadFromCloud()" class="w-full bg-white border border-emerald-600 text-emerald-600 text-[11px] font-bold p-2 rounded-lg">手動刷新數據</button>
                 </div>
             </div>
         </div>
     </main>
 
     <footer class="fixed bottom-0 w-full max-w-md bg-amber-50 border-t border-amber-100 px-4 py-3 z-30">
-        <marquee class="text-[11px] font-bold text-amber-900">📢 提醒：注意隨身行李，避免被海關開箱檢查。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; 
-    提醒：請確認護照有效期需在六個月以上。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; 
-    提醒：禁止攜帶新鮮蔬果及肉類製品入境。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
-    提醒：注意免稅額度，請留意購買金額。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
-    提醒：禁止在雪球內藏石頭投擲。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;</marquee>
+        <marquee class="text-[11px] font-bold text-amber-900">📢 提醒：注意隨身行李，避免被海關開箱檢查。 | 提醒：請確認護照有效期需在六個月以上。 | 提醒：禁止攜帶新鮮蔬果及肉類製品入境。 | 提醒：禁止在雪球內藏石頭投擲。</marquee>
     </footer>
 
     <script>
@@ -326,11 +287,23 @@
 
         window.onload = async () => {
             renderItinerary();
+            initPayerSelect();
             await fetchRate();
             const lastTab = localStorage.getItem('last_tab') || 'flights';
             showTab(lastTab);
             downloadFromCloud();
         };
+
+        // 初始化下拉選單
+        function initPayerSelect() {
+            const select = document.getElementById('payer');
+            members.forEach(m => {
+                const opt = document.createElement('option');
+                opt.value = m;
+                opt.textContent = m;
+                select.appendChild(opt);
+            });
+        }
 
         function showTab(tabId) {
             localStorage.setItem('last_tab', tabId);
@@ -360,14 +333,9 @@
             try {
                 const r = await fetch(GAS_URL);
                 const data = await r.json();
-                
-                // 強化解析邏輯，避免雲端回傳格式不符導致出錯
                 records = data.filter(row => row[1] && row[3]).map(row => {
                     let parsedMembers = [];
-                    try {
-                        parsedMembers = (typeof row[5] === 'string') ? JSON.parse(row[5]) : row[5];
-                    } catch(e) { parsedMembers = members; } // 解析失敗時預設全員分攤
-
+                    try { parsedMembers = (typeof row[5] === 'string') ? JSON.parse(row[5]) : row[5]; } catch(e) { parsedMembers = members; }
                     return {
                         date: row[0] ? new Date(row[0]).toLocaleString('zh-TW', {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'}) : '無日期',
                         payer: row[1],
@@ -377,39 +345,27 @@
                         members: Array.isArray(parsedMembers) ? parsedMembers : members
                     };
                 });
-                
                 calculateAllStat();
                 status.innerText = 'SUCCESS ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-            } catch(e) { 
-                status.innerText = 'ERROR';
-                console.error("下載失敗:", e);
-            }
+            } catch(e) { status.innerText = 'ERROR'; }
             overlay.style.visibility = 'hidden';
         }
 
         function calculateAllStat() {
             let balances = {}; let totalPaid = {};
             members.forEach(m => { balances[m] = 0; totalPaid[m] = 0; });
-            
             const list = document.getElementById('history-list');
             list.innerHTML = '';
-            
-            // 1. 處理損益與歷史紀錄
             records.forEach(r => {
                 const share = r.amount / r.members.length;
                 totalPaid[r.payer] = (totalPaid[r.payer] || 0) + r.amount;
                 balances[r.payer] += r.amount;
-                r.members.forEach(m => {
-                    balances[m] = (balances[m] || 0) - share;
-                });
-                
+                r.members.forEach(m => { balances[m] = (balances[m] || 0) - share; });
                 const historyItem = document.createElement('div');
                 historyItem.className = "py-3 flex justify-between text-[11px] items-start";
                 historyItem.innerHTML = `<div class="flex-1"><div class="font-bold text-blue-800">${r.payer}: ${r.item}</div><div class="text-gray-400 text-[9px] mt-1">${r.date} | 分攤: ${r.members.join(', ')}</div></div><div class="font-bold text-blue-600 ml-2">$${r.amount}</div>`;
                 list.insertBefore(historyItem, list.firstChild);
             });
-
-            // 2. 渲染排行榜
             const rankDiv = document.getElementById('payment-summary');
             rankDiv.innerHTML = '';
             const rankColors = ["rank-1", "rank-2", "rank-3"];
@@ -417,8 +373,6 @@
                 if(a <= 0) return;
                 rankDiv.innerHTML += `<div class="flex justify-between items-center py-1"><span><span class="rank-badge ${rankColors[i] || 'bg-gray-200'}">${i+1}</span>${n}</span><span class="font-bold">$${Math.round(a)}</span></div>`;
             });
-
-            // 3. 渲染個人損益
             const pDiv = document.getElementById('personal-summary');
             pDiv.innerHTML = '';
             for(let n in balances) {
@@ -426,8 +380,6 @@
                 if(Math.abs(b) < 1) continue;
                 pDiv.innerHTML += `<div class="flex justify-between py-1"><span>${n}</span><span class="${b>0?'text-green-600':'text-red-500'} font-bold">${b>0?'應收':'應付'} $${Math.abs(b)}</span></div>`;
             }
-
-            // 4. 渲染最短還款方案
             renderSettlementPlan(balances);
         }
 
@@ -450,56 +402,44 @@
         }
 
         async function addRecord() {
-            const payer = document.getElementById('payer').value.trim();
+            const payer = document.getElementById('payer').value;
             const item = document.getElementById('item').value.trim();
             let amount = parseFloat(document.getElementById('amount').value);
             const curr = document.getElementById('currency').value;
             const checked = Array.from(document.querySelectorAll('input[name="m-check"]:checked')).map(el => el.value);
-
             if(!payer || isNaN(amount) || checked.length === 0) return alert('請填寫完整內容');
-
             if(curr === 'JPY') {
                 const twdValue = Math.ceil(amount * jpyRate);
                 if(!confirm(`日幣 ¥${amount} ➔ 台幣 約 $${twdValue}\n確認新增？`)) return;
                 amount = twdValue;
             }
-
             const btn = document.getElementById('save-btn');
             const overlay = document.getElementById('loading-overlay');
             btn.disabled = true; btn.innerText = "正在儲存...";
             overlay.style.visibility = 'visible';
-
-            const payload = { payer, item, amount, curr, members: JSON.stringify(checked) };
-            
             try {
-                await fetch(GAS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-                // 延遲重載確保雲端已寫入
-                setTimeout(() => { location.reload(); }, 1000); 
-            } catch (e) {
-                alert('傳輸失敗');
-                btn.disabled = false; overlay.style.visibility = 'hidden';
-            }
+                await fetch(GAS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ payer, item, amount, curr: 'TWD', members: JSON.stringify(checked) }) });
+                setTimeout(() => { location.reload(); }, 1000);
+            } catch (e) { alert('傳輸失敗'); btn.disabled = false; overlay.style.visibility = 'hidden'; }
         }
 
         function renderSplitUI() {
             const area = document.getElementById('members-area');
-            const datalist = document.getElementById('name-list');
             if(!area) return;
-            area.innerHTML = ''; datalist.innerHTML = '';
+            area.innerHTML = '';
             members.forEach(m => {
                 area.innerHTML += `<label class="bg-white border border-gray-200 px-3 py-1.5 rounded-full text-[11px] flex items-center shadow-sm"><input type="checkbox" name="m-check" value="${m}" checked class="mr-1.5"> ${m}</label>`;
-                datalist.innerHTML += `<option value="${m}">`;
             });
         }
 
         function renderItinerary() {
             const days = [
                 { id: 1, date: "3/13 (五)", color: "blue-600", items: [{ time: "09:30", text: "轉機組抵達新千歲" }, { time: "11:00", text: "直飛組抵達新千歲" }, { time: "13:00", text: "租車中心取車 " }, { time: "15:00", text: "札幌飯店 Check-in" }]},
-            { id: 2, date: "3/14 (六)", color: "blue-400", items: [{ time: "08:30", text: "旭川動物園出發" }, { time: "11:00", text: "🐧 企鵝遊行觀賞" }, { time: "18:00", text: "美瑛青池夜間點燈" }]},
-            { id: 3, date: "3/15 (日)", color: "pink-500", items: [{ time: "08:00", text: "札幌深度遊🦀🦀🦀" }]},
-            { id: 4, date: "3/16 (一)", color: "emerald-500", items: [{ time: "08:30", text: "Kiroro 滑雪場體驗" }, { time: "16:00", text: "小樽運河" }, { time: "19:00", text: "小樽晚餐" }]},
-            { id: 5, date: "3/17 (二)", color: "slate-700", items: [{ time: "8:00", text: "最後補貨" }, { time: "16:00", text: "前往機場 (還車)" }, { time: "18:40", text: "新千歲起飛 (TR893)" }]}
-        ];
+                { id: 2, date: "3/14 (六)", color: "blue-400", items: [{ time: "08:30", text: "旭川動物園出發" }, { time: "11:00", text: "🐧 企鵝遊行觀賞" }, { time: "18:00", text: "美瑛青池夜間點燈" }]},
+                { id: 3, date: "3/15 (日)", color: "pink-500", items: [{ time: "08:00", text: "札幌深度遊🦀🦀🦀" }]},
+                { id: 4, date: "3/16 (一)", color: "emerald-500", items: [{ time: "08:30", text: "Kiroro 滑雪場體驗" }, { time: "16:00", text: "小樽運河" }, { time: "19:00", text: "小樽晚餐" }]},
+                { id: 5, date: "3/17 (二)", color: "slate-700", items: [{ time: "8:00", text: "最後補貨" }, { time: "16:00", text: "前往機場 (還車)" }, { time: "18:40", text: "新千歲起飛 (TR893)" }]}
+            ];
             const list = document.getElementById('itinerary-list');
             list.innerHTML = days.map(day => `
                 <div class="border-l-4 border-${day.color} pl-4 relative">
@@ -521,7 +461,3 @@
     </script>
 </body>
 </html>
-
-
-
-
