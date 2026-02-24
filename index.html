@@ -3,51 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>北海道旅遊工具</title>
+    <title>北海道六人自駕行攻略</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .active-tab {
-            border-bottom: 3px solid #3b82f6;
-            color: #3b82f6;
-            font-weight: bold;
-        }
-        .flight-group {
-            display: none;
-        }
-        .flight-group.active {
-            display: block;
-        }
-        .checkbox-item:checked + span {
-            text-decoration: line-through;
-            color: #94a3b8;
-        }
-        .category-title {
-            border-left: 4px solid #3b82f6;
-            padding-left: 0.75rem;
-            margin: 1.5rem 0 0.75rem 0;
-            color: #1e40af;
-            font-weight: 700;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .schedule-item {
-            transition: all 0.3s ease;
-        }
-        /* 分帳功能專屬微調 */
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .active-tab { border-bottom: 3px solid #3b82f6; color: #3b82f6; font-weight: bold; }
+        .flight-group { display: none; }
+        .flight-group.active { display: block; }
+        .checkbox-item:checked + span { text-decoration: line-through; color: #94a3b8; }
+        .category-title { border-left: 4px solid #3b82f6; padding-left: 0.75rem; margin: 1.5rem 0 0.75rem 0; color: #1e40af; font-weight: 700; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
         .snow-card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 16px; border: 1px solid #e2e8f0; }
         .badge { width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; margin-right: 8px; font-weight: bold; color: white; }
     </style>
@@ -67,9 +36,7 @@
         <button onclick="showTab('splitting')" id="btn-splitting" class="flex-none px-5 py-4 text-sm font-medium">💰 分帳</button>
     </nav>
 
-    <main class="p-4">
-        
-        <div id="flights" class="tab-content active space-y-4">
+    <div id="flights" class="tab-content active space-y-4">
             <div class="flex p-1 bg-gray-100 rounded-lg mb-4">
                 <button onclick="toggleFlightGroup('direct')" id="btn-direct" class="flex-1 py-2 text-xs font-bold rounded-md bg-white shadow-sm text-blue-600">直飛組</button>
                 <button onclick="toggleFlightGroup('transfer')" id="btn-transfer" class="flex-1 py-2 text-xs font-bold rounded-md text-gray-500">轉機組</button>
@@ -255,11 +222,23 @@
             <div id="itinerary-list" class="space-y-8"></div>
         </div>
 
+
         <div id="splitting" class="tab-content space-y-4">
-            <div class="snow-card shadow-sm">
-                <h3 class="font-bold text-blue-800 mb-4 flex items-center text-sm"><i class="fas fa-plus-circle mr-2"></i> 新增支出記錄</h3>
+            <div class="snow-card bg-emerald-50 border-emerald-100">
+                <h3 class="font-bold text-emerald-800 mb-2 text-sm flex items-center justify-between">
+                    <span><i class="fas fa-cloud mr-2"></i> 雲端同步狀態</span>
+                    <span id="sync-status" class="text-[10px] bg-white px-2 py-0.5 rounded text-gray-400">等待中...</span>
+                </h3>
+                <div class="flex gap-2">
+                    <button onclick="downloadFromCloud()" class="flex-1 bg-white border border-emerald-600 text-emerald-600 text-[11px] font-bold p-2 rounded-lg">手動拉取</button>
+                    <button onclick="uploadToCloud()" class="flex-1 bg-emerald-600 text-white text-[11px] font-bold p-2 rounded-lg">手動備份</button>
+                </div>
+            </div>
+
+            <div class="snow-card">
+                <h3 class="font-bold text-blue-800 mb-4 text-sm flex items-center"><i class="fas fa-plus-circle mr-2"></i> 新增支出</h3>
                 <div class="space-y-3">
-                    <input type="text" id="payer" list="name-list" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="付款人名稱">
+                    <input type="text" id="payer" list="name-list" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="付款人">
                     <datalist id="name-list"></datalist>
                     <div class="flex gap-2">
                         <input type="number" id="amount" class="flex-1 p-3 border border-gray-200 rounded-xl text-sm" placeholder="金額" inputmode="numeric">
@@ -268,12 +247,9 @@
                             <option value="JPY">日幣</option>
                         </select>
                     </div>
-                    <input type="text" id="item" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="消費項目">
-                    <div class="bg-slate-50 p-3 rounded-xl">
-                        <p class="text-[10px] font-bold text-gray-400 mb-2">分攤成員</p>
-                        <div id="members-area" class="flex flex-wrap gap-2"></div>
-                    </div>
-                    <button onclick="addRecord()" class="w-full bg-blue-600 text-white font-bold p-3 rounded-xl shadow-lg active:scale-95 transition-transform">確認儲存記錄</button>
+                    <input type="text" id="item" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="項目">
+                    <div id="members-area" class="flex flex-wrap gap-2 bg-slate-50 p-3 rounded-xl"></div>
+                    <button onclick="addRecord()" id="add-btn" class="w-full bg-blue-600 text-white font-bold p-3 rounded-xl shadow-lg">儲存並自動備份</button>
                 </div>
             </div>
 
@@ -291,24 +267,31 @@
                 <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center"><i class="fas fa-chart-pie mr-2"></i> 最終損益 (應收/應付)</h3>
                 <div id="personal-summary" class="text-xs space-y-2"></div>
             </div>
-            
+
             <div class="snow-card bg-slate-50">
-                <h3 class="font-bold text-gray-500 mb-3 text-sm flex items-center"><i class="fas fa-history mr-2"></i> 歷史記錄</h3>
+                <h3 class="font-bold text-gray-500 mb-3 text-sm flex items-center justify-between">
+                    <span><i class="fas fa-history mr-2"></i> 歷史記錄</span>
+                    <button onclick="clearRecords()" class="text-red-400 font-normal text-[10px]">清空</button>
+                </h3>
                 <div id="history-list" class="divide-y divide-gray-200"></div>
             </div>
         </div>
     </main>
 
-    <footer class="fixed bottom-0 w-full max-w-md bg-amber-50 border-t border-amber-100 px-4 py-3 flex items-center justify-center space-x-2 z-30">
+    <footer class="fixed bottom-0 w-full max-w-md bg-amber-50 border-t border-amber-100 px-4 py-3 flex items-center justify-center z-30">
         <span class="text-lg">📢</span>
         <marquee class="text-[11px] font-bold text-amber-900" scrollamount="5">
     提醒：注意隨身行李，避免被海關開箱檢查。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; 
     提醒：請確認護照有效期需在六個月以上。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; 
-    提醒：禁止攜帶新鮮蔬果及肉類製品入境。
+    提醒：禁止攜帶新鮮蔬果及肉類製品入境。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
+    提醒：注意免稅額度，請留意購買金額。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
+    提醒：禁止在雪球內藏石頭投擲。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
 	</marquee>
     </footer>
 
     <script>
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbwgmHOOhdgywLdsP3oW_5kSCwwSVtfm22Kwhj9bEFQXr1mk9XayKxTLF478sSYh623x/exec";
+        const members = ["一號", "詩潔", "Yuzugi", "小瑜", "老李", "栩翔"];
         const daysData = [
             { id: 1, date: "3/13 (五)", color: "blue-600", items: [{ time: "09:30", text: "轉機組抵達新千歲" }, { time: "11:00", text: "直飛組抵達新千歲" }, { time: "13:00", text: "租車中心取車" }, { time: "15:00", text: "札幌飯店 Check-in" }]},
             { id: 2, date: "3/14 (六)", color: "blue-400", items: [{ time: "08:30", text: "旭川動物園出發" }, { time: "11:00", text: "🐧 企鵝遊行" }, { time: "18:30", text: "美瑛青池夜間點燈" }]},
@@ -317,28 +300,57 @@
             { id: 5, date: "3/17 (二)", color: "slate-700", items: [{ time: "10:00", text: "札幌市區最後補貨" }, { time: "16:00", text: "前往機場 (還車)" }, { time: "18:40", text: "新千歲起飛 (TR893)" }]}
         ];
 
-        let members = ["一號", "詩潔", "Yuzugi", "小瑜", "老李", "栩翔"]; 
-        let records = [];
-        let jpyRate = 0.21; // 預設匯率
 
-        // 取得即時匯率
-        fetch('https://open.er-api.com/v6/latest/JPY').then(r=>r.json()).then(d=> jpyRate = d.rates.TWD).catch(e=>console.log("匯率取得失敗"));
+        let records = JSON.parse(localStorage.getItem('hokkaido_v1')) || [];
+        let jpyRate = 0.21;
+
+        // 1. 初始化：取得匯率與自動下載雲端資料
+        window.onload = () => {
+            renderItinerary();
+            fetch('https://open.er-api.com/v6/latest/JPY').then(r=>r.json()).then(d=> jpyRate = d.rates.TWD);
+            downloadFromCloud(); // 開啟網頁自動拉取
+        };
 
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active-tab'));
             document.getElementById(tabId).classList.add('active');
             document.getElementById('btn-' + tabId).classList.add('active-tab');
-            if(tabId === 'itinerary') renderItinerary();
             if(tabId === 'splitting') renderSplitUI();
         }
 
+        // --- 雲端功能 ---
+        async function uploadToCloud() {
+            const status = document.getElementById('sync-status');
+            status.innerText = '正在備份...';
+            try {
+                await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(records) });
+                status.innerText = '已同步: ' + new Date().toLocaleTimeString();
+            } catch(e) { status.innerText = '備份失敗'; }
+        }
+
+        async function downloadFromCloud() {
+            const status = document.getElementById('sync-status');
+            status.innerText = '同步中...';
+            try {
+                const r = await fetch(GAS_URL);
+                const data = await r.json();
+                if(data && data.length >= 0) {
+                    records = data;
+                    localStorage.setItem('hokkaido_v1', JSON.stringify(records));
+                    calculateAllStat();
+                    status.innerText = '同步成功: ' + new Date().toLocaleTimeString();
+                }
+            } catch(e) { status.innerText = '同步失敗'; }
+        }
+
+        // --- 分帳功能 ---
         function renderSplitUI() {
             const area = document.getElementById('members-area');
             const datalist = document.getElementById('name-list');
             area.innerHTML = ''; datalist.innerHTML = '';
             members.forEach(m => {
-                area.innerHTML += `<label class="bg-white border border-gray-200 px-3 py-1 rounded-full text-[11px] flex items-center"><input type="checkbox" name="m-check" value="${m}" checked class="mr-1"> ${m}</label>`;
+                area.innerHTML += `<label class="bg-white border px-3 py-1 rounded-full text-[11px] flex items-center"><input type="checkbox" name="m-check" value="${m}" checked class="mr-1"> ${m}</label>`;
                 datalist.innerHTML += `<option value="${m}">`;
             });
             calculateAllStat();
@@ -346,76 +358,94 @@
 
         function addRecord() {
             const payer = document.getElementById('payer').value;
-            let amount = parseInt(document.getElementById('amount').value);
+            let amount = parseFloat(document.getElementById('amount').value);
             const currency = document.getElementById('currency').value;
             const item = document.getElementById('item').value;
             const checked = Array.from(document.querySelectorAll('input[name="m-check"]:checked')).map(el => el.value);
-            
-            if(!payer || !amount || checked.length === 0) return alert('請填寫完整');
 
-            // 匯率轉換邏輯
+            if(!payer || !amount || checked.length === 0) return alert('請完整填寫');
+
+            // 2. 日幣提醒
             if(currency === 'JPY') {
-                const twdAmount = Math.ceil(amount * jpyRate);
-                if(!confirm(`目前匯率 ${jpyRate.toFixed(3)}，日幣 ¥${amount} ➔ 台幣 $${twdAmount}，確定嗎？`)) return;
-                amount = twdAmount;
+                const twdValue = Math.ceil(amount * jpyRate);
+                if(!confirm(`【日幣提醒】\n匯率：${jpyRate.toFixed(4)}\n日幣 ¥${amount} ➔ 台幣 約 $${twdValue}\n確定以台幣 $${twdValue} 記錄？`)) return;
+                amount = twdValue;
             }
 
-            records.push({ payer, amount, item, members: checked });
+            records.push({ payer, amount, item, members: checked, id: Date.now() });
+            localStorage.setItem('hokkaido_v1', JSON.stringify(records));
             calculateAllStat();
-            alert('記錄成功 (台幣計價)');
+            
+            // 3. 自動上傳備份
+            uploadToCloud();
+            
+            document.getElementById('amount').value = ''; document.getElementById('item').value = '';
         }
 
         function calculateAllStat() {
             let balances = {}; let totalPaid = {};
             members.forEach(m => { balances[m] = 0; totalPaid[m] = 0; });
-            const historyDiv = document.getElementById('history-list'); historyDiv.innerHTML = '';
-
+            const list = document.getElementById('history-list'); list.innerHTML = '';
+            
             records.forEach(r => {
                 const share = r.amount / r.members.length;
                 totalPaid[r.payer] += r.amount;
                 balances[r.payer] += r.amount;
                 r.members.forEach(m => balances[m] -= share);
-                historyDiv.innerHTML = `<div class="py-2 flex justify-between text-[11px] font-medium"><div>${r.payer}: ${r.item}</div><div class="text-blue-600">$${r.amount}</div></div>` + historyDiv.innerHTML;
+                list.innerHTML = `<div class="py-2 flex justify-between text-[11px]"><span>${r.payer}: ${r.item}</span><span class="font-bold text-blue-600">$${r.amount}</span></div>` + list.innerHTML;
             });
 
-            // 🏆 排行榜
+            // 補回：墊付貢獻排行榜
             const rankDiv = document.getElementById('payment-summary'); rankDiv.innerHTML = '';
             const ranks = ["bg-yellow-400", "bg-gray-400", "bg-amber-600"];
-            Object.entries(totalPaid).sort((a,b) => b[1] - a[1]).forEach(([name, amt], i) => {
-                if(amt === 0) return;
-                rankDiv.innerHTML += `<div class="flex justify-between items-center"><span><span class="badge ${ranks[i] || 'bg-gray-200'}">${i+1}</span>${name}</span><span class="font-bold">$${amt}</span></div>`;
+            Object.entries(totalPaid).sort((a,b)=>b[1]-a[1]).forEach(([n, a], i) => {
+                if(a === 0) return;
+                rankDiv.innerHTML += `<div class="flex justify-between items-center"><span class="flex items-center"><span class="badge ${ranks[i] || 'bg-gray-200'}">${i+1}</span>${n}</span><span class="font-bold">$${Math.round(a)}</span></div>`;
             });
 
-            // 📊 個人損益
-            const personalDiv = document.getElementById('personal-summary'); personalDiv.innerHTML = '';
-            for(let name in balances) {
-                const b = Math.round(balances[name]);
-                if(b === 0) continue;
-                personalDiv.innerHTML += `<div class="flex justify-between"><span>${name}</span><span class="font-bold ${b>0?'text-green-600':'text-red-500'}">${b>0?'應收':'應付'} $${Math.abs(b)}</span></div>`;
+            // 補回：最終損益
+            const pDiv = document.getElementById('personal-summary'); pDiv.innerHTML = '';
+            for(let n in balances) {
+                const b = Math.round(balances[n]);
+                if(b!==0) pDiv.innerHTML += `<div class="flex justify-between"><span>${n}</span><span class="${b>0?'text-green-600':'text-red-500'} font-bold">${b>0?'應收':'應付'} $${Math.abs(b)}</span></div>`;
             }
 
-            // 🚀 最短還款
+            // 最短還款
             const planDiv = document.getElementById('settlement-plan'); planDiv.innerHTML = '';
-            let debtors = [], creditors = [];
+            let d = [], c = [];
             for(let n in balances) {
-                if(balances[n] < -1) debtors.push({n, amt: Math.abs(balances[n])});
-                else if(balances[n] > 1) creditors.push({n, amt: balances[n]});
+                if(balances[n] < -1) d.push({n, amt: Math.abs(balances[n])});
+                else if(balances[n] > 1) c.push({n, amt: balances[n]});
             }
-            while(debtors.length && creditors.length) {
-                debtors.sort((a,b) => b.amt - a.amt); creditors.sort((a,b) => b.amt - a.amt);
-                let settle = Math.min(debtors[0].amt, creditors[0].amt);
-                planDiv.innerHTML += `<div class="flex items-center justify-between bg-white p-2 rounded-xl border border-blue-50 text-[11px] shadow-sm">
-                    <span class="text-red-500 font-bold">${debtors[0].n}</span>
-                    <span class="text-gray-400 italic">給予 $${Math.ceil(settle)} ➔</span>
-                    <span class="text-green-600 font-bold">${creditors[0].n}</span>
-                </div>`;
-                debtors[0].amt -= settle; creditors[0].amt -= settle;
-                if(debtors[0].amt < 1) debtors.shift();
-                if(creditors[0].amt < 1) creditors.shift();
+            while(d.length && c.length) {
+                d.sort((x,y)=>y.amt-x.amt); c.sort((x,y)=>y.amt-x.amt);
+                let s = Math.min(d[0].amt, c[0].amt);
+                planDiv.innerHTML += `<div class="flex justify-between bg-white p-2 rounded-lg text-[10px] shadow-sm"><span>${d[0].n} ➔ ${c[0].n}</span><span class="font-bold text-blue-600">$${Math.ceil(s)}</span></div>`;
+                d[0].amt -= s; c[0].amt -= s;
+                if(d[0].amt < 1) d.shift(); if(c[0].amt < 1) c.shift();
             }
         }
 
-        // 原有航班與行程 JS
+        function clearRecords() { if(confirm('清空所有本地資料？')) { records = []; localStorage.removeItem('hokkaido_v1'); calculateAllStat(); uploadToCloud(); } }
+
+        function toggleFlightGroup(group) {
+            document.querySelectorAll('.flight-group').forEach(el => el.classList.remove('active'));
+            document.getElementById('group-' + group).classList.add('active');
+        }
+
+        function renderItinerary() {
+            const list = document.getElementById('itinerary-list');
+            if(!list) return;
+            list.innerHTML = '';
+            daysData.forEach(day => {
+                const dDiv = document.createElement('div');
+                dDiv.className = `border-l-4 border-${day.color} pl-4 mb-8`;
+                dDiv.innerHTML = `<h4 class="font-black text-${day.color} mb-4">${day.date}</h4>` + 
+                    day.items.map(i => `<div class="flex space-x-3 mb-2 text-sm"><span class="font-bold text-gray-400">${i.time}</span><span>${i.text}</span></div>`).join('');
+                list.appendChild(dDiv);
+            });
+        }
+// 原有航班與行程 JS
         function toggleFlightGroup(group) {
             document.querySelectorAll('.flight-group').forEach(el => el.classList.remove('active'));
             document.getElementById('group-' + group).classList.add('active');
