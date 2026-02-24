@@ -9,14 +9,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         :root { 
-            --deep-ocean: #1a237e;
-            --ice-blue: #e3f2fd;
-            --crystal-blue: #90caf9;
-            --matcha-green: #43a047;
-            --danger-red: #d32f2f;
-            --gold: #fbc02d;
-            --silver: #9e9e9e;
-            --bronze: #a1887f;
+            --deep-ocean: #1a237e; --ice-blue: #e3f2fd; --crystal-blue: #90caf9;
+            --matcha-green: #43a047; --danger-red: #d32f2f;
+            --gold: #fbc02d; --silver: #9e9e9e; --bronze: #a1887f;
         }
         body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; color: #1e293b; -webkit-tap-highlight-color: transparent; }
         .tab-content { display: none; }
@@ -24,19 +19,13 @@
         .active-tab { border-bottom: 3px solid #3b82f6; color: #3b82f6; font-weight: bold; }
         .flight-group { display: none; }
         .flight-group.active { display: block; }
-        .checkbox-item:checked + span { text-decoration: line-through; color: #94a3b8; }
-        .category-title { border-left: 4px solid #3b82f6; padding-left: 0.75rem; margin: 1.5rem 0 0.75rem 0; color: #1e40af; font-weight: 700; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
         .snow-card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .category-title { border-left: 4px solid #3b82f6; padding-left: 0.75rem; margin: 1.5rem 0 0.75rem 0; color: #1e40af; font-weight: 700; }
         
-        /* 載入畫面 */
         #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; visibility: hidden; }
         
-        /* 分帳排行榜與小卡 */
         .rank-badge { width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; color: white; font-weight: bold; font-size: 10px; }
-        .rank-1 { background: var(--gold); }
-        .rank-2 { background: var(--silver); }
-        .rank-3 { background: var(--bronze); }
+        .rank-1 { background: var(--gold); } .rank-2 { background: var(--silver); } .rank-3 { background: var(--bronze); }
         .settle-box { background: #fff; padding: 12px; border-radius: 12px; margin-bottom: 8px; border: 1px solid var(--ice-blue); display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
         .settle-name { font-weight: bold; padding: 4px 10px; border-radius: 6px; }
         .name-pay { color: var(--danger-red); background: #ffebee; }
@@ -52,7 +41,7 @@
 
     <header class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 text-center shadow-md">
         <h1 class="text-2xl font-bold italic tracking-wider">北海北海 2026</h1>
-        <p class="text-sm opacity-90 mt-1 font-medium italic">3/13 - 3/17 日本雪地小英雄</p>
+        <p class="text-sm opacity-90 mt-1 font-medium italic">雪地小英雄分帳攻略系統</p>
     </header>
 
     <nav class="flex border-b sticky top-0 bg-white z-20 shadow-sm overflow-x-auto no-scrollbar">
@@ -64,8 +53,7 @@
     </nav>
 
     <main class="p-4">
-        
-        <div id="flights" class="tab-content active space-y-4">
+       <div id="flights" class="tab-content active space-y-4">
             <div class="flex p-1 bg-gray-100 rounded-lg mb-4">
                 <button onclick="toggleFlightGroup('direct')" id="btn-direct" class="flex-1 py-2 text-xs font-bold rounded-md bg-white shadow-sm text-blue-600">直飛組</button>
                 <button onclick="toggleFlightGroup('transfer')" id="btn-transfer" class="flex-1 py-2 text-xs font-bold rounded-md text-gray-500">轉機組</button>
@@ -164,6 +152,7 @@
             </div>
         </div>
 
+        
         <div id="checklist" class="tab-content">
             <h3 class="category-title">🪪 證件與重要物品</h3>
             <div class="space-y-2 bg-blue-50 p-4 rounded-xl mb-4">
@@ -257,26 +246,23 @@
 
         </div>
 
-
-        <div id="itinerary" class="tab-content space-y-6">
+        <div id="itinerary" class="tab-content">
             <div id="itinerary-list" class="space-y-8"></div>
         </div>
 
         <div id="splitting" class="tab-content space-y-4">
             <div class="snow-card bg-emerald-50 border-emerald-100">
                 <h3 class="font-bold text-emerald-800 mb-2 text-sm flex items-center justify-between">
-                    <span><i class="fas fa-cloud mr-2"></i> 雲端同步</span>
-                    <span id="sync-status" class="text-[10px] bg-white px-2 py-0.5 rounded text-gray-400">READY</span>
+                    <span><i class="fas fa-cloud mr-2"></i> 雲端同步狀態</span>
+                    <span id="sync-status" class="text-[10px] bg-white px-2 py-0.5 rounded text-gray-400 font-mono">STANDBY</span>
                 </h3>
-                <div class="flex gap-2">
-                    <button onclick="downloadFromCloud()" class="flex-1 bg-white border border-emerald-600 text-emerald-600 text-[11px] font-bold p-2 rounded-lg">拉取最新數據</button>
-                </div>
+                <button onclick="downloadFromCloud()" class="w-full bg-white border border-emerald-600 text-emerald-600 text-[11px] font-bold p-2 rounded-lg">手動刷新數據</button>
             </div>
 
             <div class="snow-card">
-                <h3 class="font-bold text-blue-800 mb-4 text-sm flex items-center"><i class="fas fa-edit mr-2"></i> 支出登錄</h3>
+                <h3 class="font-bold text-blue-800 mb-4 text-sm"><i class="fas fa-edit mr-2"></i> 支出登錄</h3>
                 <div class="space-y-3">
-                    <input type="text" id="payer" list="name-list" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="付款人">
+                    <input type="text" id="payer" list="name-list" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="誰付錢？">
                     <datalist id="name-list"></datalist>
                     <div class="flex gap-2">
                         <input type="number" id="amount" class="flex-1 p-3 border border-gray-200 rounded-xl text-sm" placeholder="金額" inputmode="numeric">
@@ -285,26 +271,29 @@
                             <option value="JPY" selected>日幣</option>
                         </select>
                     </div>
-                    <div id="rate-display" class="text-[10px] text-blue-600 font-bold bg-blue-50 p-1.5 rounded text-center">取得匯率中...</div>
-                    <input type="text" id="item" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="項目:餐費、門票、暫借款">
+                    <div id="rate-display" class="text-[10px] text-blue-600 font-bold text-center">匯率讀取中...</div>
+                    <input type="text" id="item" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="項目說明">
                     <div id="members-area" class="flex flex-wrap gap-2 bg-slate-50 p-3 rounded-xl border border-dashed border-gray-300"></div>
                     <button onclick="addRecord()" id="save-btn" class="w-full bg-blue-600 text-white font-bold p-4 rounded-xl shadow-lg active:scale-95 transition-all">確認送出並同步</button>
                 </div>
             </div>
 
-            <div id="settlement-area" class="space-y-4">
+            <div id="calculation-results" class="space-y-4">
                 <div class="snow-card bg-blue-50 border-blue-100">
                     <h3 class="font-bold text-blue-900 mb-3 text-sm flex items-center"><i class="fas fa-snowflake mr-2"></i> 最短還款方案 (台幣)</h3>
                     <div id="settlement-plan" class="space-y-2"></div>
                 </div>
+
                 <div class="snow-card">
-                    <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center"><i class="fas fa-crown mr-2"></i> 墊付貢獻排行榜</h3>
+                    <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center"><i class="fas fa-crown mr-2"></i> 墊付排行榜</h3>
                     <div id="payment-summary" class="text-xs space-y-2"></div>
                 </div>
+
                 <div class="snow-card">
-                    <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center"><i class="fas fa-chart-pie mr-2"></i> 個人應收應付</h3>
+                    <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center"><i class="fas fa-chart-pie mr-2"></i> 個人損益</h3>
                     <div id="personal-summary" class="text-xs space-y-2"></div>
                 </div>
+
                 <div class="snow-card bg-slate-50">
                     <h3 class="font-bold text-gray-500 mb-3 text-sm flex items-center justify-between">
                         <span><i class="fas fa-history mr-2"></i> 詳細歷史紀錄</span>
@@ -321,8 +310,7 @@
     提醒：請確認護照有效期需在六個月以上。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; 
     提醒：禁止攜帶新鮮蔬果及肉類製品入境。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
     提醒：注意免稅額度，請留意購買金額。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
-    提醒：禁止在雪球內藏石頭投擲。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
-</marquee>
+    提醒：禁止在雪球內藏石頭投擲。 &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;</marquee>
     </footer>
 
     <script>
@@ -331,34 +319,22 @@
         let records = [];
         let jpyRate = 0.21;
 
-        // 行程資料補回
-        const daysData = [
-            { id: 1, date: "3/13 (五)", color: "blue-600", items: [{ time: "09:30", text: "轉機組抵達新千歲" }, { time: "11:00", text: "直飛組抵達新千歲" }, { time: "13:00", text: "租車中心取車 " }, { time: "15:00", text: "札幌飯店 Check-in" }]},
-            { id: 2, date: "3/14 (六)", color: "blue-400", items: [{ time: "08:30", text: "旭川動物園出發" }, { time: "11:00", text: "🐧 企鵝遊行觀賞" }, { time: "18:00", text: "美瑛青池夜間點燈" }]},
-            { id: 3, date: "3/15 (日)", color: "pink-500", items: [{ time: "08:00", text: "札幌深度遊🦀🦀🦀" }]},
-            { id: 4, date: "3/16 (一)", color: "emerald-500", items: [{ time: "08:30", text: "Kiroro 滑雪場體驗" }, { time: "16:00", text: "小樽運河" }, { time: "19:00", text: "小樽晚餐" }]},
-            { id: 5, date: "3/17 (二)", color: "slate-700", items: [{ time: "8:00", text: "最後補貨" }, { time: "16:00", text: "前往機場 (還車)" }, { time: "18:40", text: "新千歲起飛 (TR893)" }]}
-        ];
-
-
-        window.onload = () => {
-            fetchRate();
+        window.onload = async () => {
+            renderItinerary();
+            await fetchRate();
             const lastTab = localStorage.getItem('last_tab') || 'flights';
             showTab(lastTab);
             downloadFromCloud();
-            renderItinerary();
         };
 
         function showTab(tabId) {
             localStorage.setItem('last_tab', tabId);
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active-tab', 'text-blue-600'));
-            
             const activeTab = document.getElementById(tabId);
             const activeBtn = document.getElementById('btn-' + tabId);
             if(activeTab) activeTab.classList.add('active');
             if(activeBtn) activeBtn.classList.add('active-tab', 'text-blue-600');
-            
             if(tabId === 'splitting') renderSplitUI();
         }
 
@@ -368,7 +344,7 @@
                 const data = await res.json();
                 jpyRate = data.rates.TWD;
                 document.getElementById('rate-display').innerText = `即時匯率：1 JPY ≈ ${jpyRate.toFixed(4)} TWD`;
-            } catch (e) { document.getElementById('rate-display').innerText = `預設匯率 0.21`; }
+            } catch (e) { document.getElementById('rate-display').innerText = `使用預設匯率 0.21`; }
         }
 
         async function downloadFromCloud() {
@@ -379,16 +355,93 @@
             try {
                 const r = await fetch(GAS_URL);
                 const data = await r.json();
-                records = data.map(row => ({
-                    date: row[0] ? new Date(row[0]).toLocaleString('zh-TW', {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'}) : '',
-                    payer: row[1], item: row[2],
-                    amount: Math.ceil(parseFloat(row[3])), curr: row[4],
-                    members: typeof row[5] === 'string' ? JSON.parse(row[5]) : row[5]
-                }));
+                
+                // 強化解析邏輯，避免雲端回傳格式不符導致出錯
+                records = data.filter(row => row[1] && row[3]).map(row => {
+                    let parsedMembers = [];
+                    try {
+                        parsedMembers = (typeof row[5] === 'string') ? JSON.parse(row[5]) : row[5];
+                    } catch(e) { parsedMembers = members; } // 解析失敗時預設全員分攤
+
+                    return {
+                        date: row[0] ? new Date(row[0]).toLocaleString('zh-TW', {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'}) : '無日期',
+                        payer: row[1],
+                        item: row[2] || '未分類支出',
+                        amount: Math.ceil(parseFloat(row[3])) || 0,
+                        curr: row[4] || 'TWD',
+                        members: Array.isArray(parsedMembers) ? parsedMembers : members
+                    };
+                });
+                
                 calculateAllStat();
                 status.innerText = 'SUCCESS ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-            } catch(e) { status.innerText = 'OFFLINE'; }
+            } catch(e) { 
+                status.innerText = 'ERROR';
+                console.error("下載失敗:", e);
+            }
             overlay.style.visibility = 'hidden';
+        }
+
+        function calculateAllStat() {
+            let balances = {}; let totalPaid = {};
+            members.forEach(m => { balances[m] = 0; totalPaid[m] = 0; });
+            
+            const list = document.getElementById('history-list');
+            list.innerHTML = '';
+            
+            // 1. 處理損益與歷史紀錄
+            records.forEach(r => {
+                const share = r.amount / r.members.length;
+                totalPaid[r.payer] = (totalPaid[r.payer] || 0) + r.amount;
+                balances[r.payer] += r.amount;
+                r.members.forEach(m => {
+                    balances[m] = (balances[m] || 0) - share;
+                });
+                
+                const historyItem = document.createElement('div');
+                historyItem.className = "py-3 flex justify-between text-[11px] items-start";
+                historyItem.innerHTML = `<div class="flex-1"><div class="font-bold text-blue-800">${r.payer}: ${r.item}</div><div class="text-gray-400 text-[9px] mt-1">${r.date} | 分攤: ${r.members.join(', ')}</div></div><div class="font-bold text-blue-600 ml-2">$${r.amount}</div>`;
+                list.insertBefore(historyItem, list.firstChild);
+            });
+
+            // 2. 渲染排行榜
+            const rankDiv = document.getElementById('payment-summary');
+            rankDiv.innerHTML = '';
+            const rankColors = ["rank-1", "rank-2", "rank-3"];
+            Object.entries(totalPaid).sort((a,b)=>b[1]-a[1]).forEach(([n, a], i) => {
+                if(a <= 0) return;
+                rankDiv.innerHTML += `<div class="flex justify-between items-center py-1"><span><span class="rank-badge ${rankColors[i] || 'bg-gray-200'}">${i+1}</span>${n}</span><span class="font-bold">$${Math.round(a)}</span></div>`;
+            });
+
+            // 3. 渲染個人損益
+            const pDiv = document.getElementById('personal-summary');
+            pDiv.innerHTML = '';
+            for(let n in balances) {
+                const b = Math.ceil(balances[n]);
+                if(Math.abs(b) < 1) continue;
+                pDiv.innerHTML += `<div class="flex justify-between py-1"><span>${n}</span><span class="${b>0?'text-green-600':'text-red-500'} font-bold">${b>0?'應收':'應付'} $${Math.abs(b)}</span></div>`;
+            }
+
+            // 4. 渲染最短還款方案
+            renderSettlementPlan(balances);
+        }
+
+        function renderSettlementPlan(balances) {
+            const planDiv = document.getElementById('settlement-plan');
+            planDiv.innerHTML = '';
+            let debtors = [], creditors = [];
+            for(let n in balances) {
+                if(balances[n] < -0.5) debtors.push({n, amt: Math.abs(balances[n])});
+                else if(balances[n] > 0.5) creditors.push({n, amt: balances[n]});
+            }
+            while(debtors.length && creditors.length) {
+                debtors.sort((a,b)=>b.amt-a.amt); creditors.sort((a,b)=>b.amt-a.amt);
+                let settleAmt = Math.min(debtors[0].amt, creditors[0].amt);
+                planDiv.innerHTML += `<div class="settle-box"><span class="settle-name name-pay">${debtors[0].n}</span><div class="text-center flex-1"><i class="fas fa-arrow-right text-blue-200 text-xs"></i><div class="font-bold text-blue-700">$${Math.ceil(settleAmt)}</div></div><span class="settle-name name-get">${creditors[0].n}</span></div>`;
+                debtors[0].amt -= settleAmt; creditors[0].amt -= settleAmt;
+                if(debtors[0].amt < 1) debtors.shift();
+                if(creditors[0].amt < 1) creditors.shift();
+            }
         }
 
         async function addRecord() {
@@ -398,7 +451,7 @@
             const curr = document.getElementById('currency').value;
             const checked = Array.from(document.querySelectorAll('input[name="m-check"]:checked')).map(el => el.value);
 
-            if(!payer || !amount || checked.length === 0) return alert('請完整填寫');
+            if(!payer || isNaN(amount) || checked.length === 0) return alert('請填寫完整內容');
 
             if(curr === 'JPY') {
                 const twdValue = Math.ceil(amount * jpyRate);
@@ -408,73 +461,18 @@
 
             const btn = document.getElementById('save-btn');
             const overlay = document.getElementById('loading-overlay');
-            btn.disabled = true; btn.innerText = "同步中...";
+            btn.disabled = true; btn.innerText = "正在儲存...";
             overlay.style.visibility = 'visible';
 
             const payload = { payer, item, amount, curr, members: JSON.stringify(checked) };
             
             try {
-                await fetch(GAS_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                setTimeout(() => { location.reload(); }, 800); 
+                await fetch(GAS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
+                // 延遲重載確保雲端已寫入
+                setTimeout(() => { location.reload(); }, 1000); 
             } catch (e) {
-                alert('備份失敗');
+                alert('傳輸失敗');
                 btn.disabled = false; overlay.style.visibility = 'hidden';
-            }
-        }
-
-        function calculateAllStat() {
-            let balances = {}; let totalPaid = {};
-            members.forEach(m => { balances[m] = 0; totalPaid[m] = 0; });
-            const list = document.getElementById('history-list'); 
-            if(!list) return;
-            list.innerHTML = '';
-            
-            records.forEach(r => {
-                const share = r.amount / r.members.length;
-                totalPaid[r.payer] = (totalPaid[r.payer] || 0) + r.amount;
-                balances[r.payer] += r.amount;
-                r.members.forEach(m => balances[m] = (balances[m] || 0) - share);
-                
-                const historyItem = document.createElement('div');
-                historyItem.className = "py-3 flex justify-between text-[11px] items-start";
-                historyItem.innerHTML = `<div class="flex-1"><div class="font-bold text-blue-800">${r.payer}: ${r.item}</div><div class="text-gray-400 text-[9px] mt-1"><i class="far fa-clock"></i> ${r.date} | 分攤: ${r.members.join(', ')}</div></div><div class="font-bold text-blue-600 ml-2">$${Math.ceil(r.amount)}</div>`;
-                list.insertBefore(historyItem, list.firstChild);
-            });
-
-            // 渲染排行榜、損益、還款方案
-            renderResultsUI(totalPaid, balances);
-        }
-
-        function renderResultsUI(totalPaid, balances) {
-            const rankDiv = document.getElementById('payment-summary');
-            rankDiv.innerHTML = '';
-            const rankColors = ["rank-1", "rank-2", "rank-3"];
-            Object.entries(totalPaid).sort((a,b)=>b[1]-a[1]).forEach(([n, a], i) => {
-                if(a <= 0) return;
-                rankDiv.innerHTML += `<div class="flex justify-between items-center py-1"><span class="flex items-center"><span class="rank-badge ${rankColors[i] || 'bg-gray-200'}">${i+1}</span>${n}</span><span class="font-bold">$${Math.round(a)}</span></div>`;
-            });
-
-            const pDiv = document.getElementById('personal-summary');
-            pDiv.innerHTML = '';
-            for(let n in balances) {
-                const b = Math.ceil(balances[n]);
-                if(Math.abs(b) < 1) continue;
-                pDiv.innerHTML += `<div class="flex justify-between py-1"><span>${n}</span><span class="${b>0?'text-green-600':'text-red-500'} font-bold">${b>0?'應收':'應付'} $${Math.abs(b)}</span></div>`;
-            }
-
-            const planDiv = document.getElementById('settlement-plan');
-            planDiv.innerHTML = '';
-            let d = [], c = [];
-            for(let n in balances) {
-                if(balances[n] < -0.1) d.push({n, amt: Math.abs(balances[n])});
-                else if(balances[n] > 0.1) c.push({n, amt: balances[n]});
-            }
-            while(d.length && c.length) {
-                d.sort((x,y)=>y.amt-x.amt); c.sort((x,y)=>y.amt-x.amt);
-                let s = Math.ceil(Math.min(d[0].amt, c[0].amt));
-                planDiv.innerHTML += `<div class="settle-box"><span class="settle-name name-pay">${d[0].n}</span><div class="text-center flex-1"><i class="fas fa-arrow-right text-blue-200 text-xs"></i><div class="font-bold text-blue-700 text-sm">$${s}</div></div><span class="settle-name name-get">${c[0].n}</span></div>`;
-                d[0].amt -= s; c[0].amt -= s;
-                if(d[0].amt <= 0) d.shift(); if(c[0].amt <= 0) c.shift();
             }
         }
 
@@ -487,36 +485,34 @@
                 area.innerHTML += `<label class="bg-white border border-gray-200 px-3 py-1.5 rounded-full text-[11px] flex items-center shadow-sm"><input type="checkbox" name="m-check" value="${m}" checked class="mr-1.5"> ${m}</label>`;
                 datalist.innerHTML += `<option value="${m}">`;
             });
-            calculateAllStat();
         }
 
         function renderItinerary() {
+            const days = [
+                { id: 1, date: "3/13 (五)", color: "blue-600", items: [{ time: "09:30", text: "轉機組抵達新千歲" }, { time: "11:00", text: "直飛組抵達新千歲" }, { time: "13:00", text: "租車中心取車 " }, { time: "15:00", text: "札幌飯店 Check-in" }]},
+            { id: 2, date: "3/14 (六)", color: "blue-400", items: [{ time: "08:30", text: "旭川動物園出發" }, { time: "11:00", text: "🐧 企鵝遊行觀賞" }, { time: "18:00", text: "美瑛青池夜間點燈" }]},
+            { id: 3, date: "3/15 (日)", color: "pink-500", items: [{ time: "08:00", text: "札幌深度遊🦀🦀🦀" }]},
+            { id: 4, date: "3/16 (一)", color: "emerald-500", items: [{ time: "08:30", text: "Kiroro 滑雪場體驗" }, { time: "16:00", text: "小樽運河" }, { time: "19:00", text: "小樽晚餐" }]},
+            { id: 5, date: "3/17 (二)", color: "slate-700", items: [{ time: "8:00", text: "最後補貨" }, { time: "16:00", text: "前往機場 (還車)" }, { time: "18:40", text: "新千歲起飛 (TR893)" }]}
+        ];
             const list = document.getElementById('itinerary-list');
-            if (!list) return;
-            list.innerHTML = '';
-            daysData.forEach(day => {
-                const dayDiv = document.createElement('div');
-                dayDiv.className = `day-group border-l-4 border-${day.color} pl-4 relative`;
-                dayDiv.innerHTML = `<h4 class="font-black text-${day.color} text-lg mb-4">${day.date}</h4><div class="schedule-items space-y-3">${day.items.map(item => `<div class="schedule-item flex space-x-3 items-start"><span class="text-xs font-black text-gray-400 mt-1.5 min-w-[45px]">${item.time}</span><span class="text-sm font-medium py-1">${item.text}</span></div>`).join('')}</div>`;
-                list.appendChild(dayDiv);
-            });
+            list.innerHTML = days.map(day => `
+                <div class="border-l-4 border-${day.color} pl-4 relative">
+                    <h4 class="font-black text-${day.color} text-lg mb-4">${day.date}</h4>
+                    ${day.items.map(i => `<div class="flex space-x-3 mb-2"><span class="text-xs text-gray-400 mt-1">${i.time}</span><span class="text-sm">${i.text}</span></div>`).join('')}
+                </div>`).join('');
         }
 
-        function toggleFlightGroup(group) {
+        function toggleFlightGroup(g) {
             document.querySelectorAll('.flight-group').forEach(el => el.classList.remove('active'));
-            document.getElementById('group-' + group).classList.add('active');
-            const btns = [document.getElementById('btn-direct'), document.getElementById('btn-transfer')];
-            btns.forEach(b => b.classList.remove('bg-white', 'shadow-sm', 'text-blue-600'));
-            const activeBtn = document.getElementById('btn-' + group);
-            activeBtn.classList.add('bg-white', 'shadow-sm', 'text-blue-600');
+            document.getElementById('group-' + g).classList.add('active');
+            document.getElementById('btn-direct').className = g === 'direct' ? 'flex-1 py-2 text-xs font-bold rounded-md bg-white shadow-sm text-blue-600' : 'flex-1 py-2 text-xs font-bold rounded-md text-gray-500';
+            document.getElementById('btn-transfer').className = g === 'transfer' ? 'flex-1 py-2 text-xs font-bold rounded-md bg-white shadow-sm text-blue-600' : 'flex-1 py-2 text-xs font-bold rounded-md text-gray-500';
         }
 
         function updateRateUI() {
-            const curr = document.getElementById('currency').value;
-            document.getElementById('rate-display').style.display = (curr === 'JPY') ? 'block' : 'none';
+            document.getElementById('rate-display').style.opacity = document.getElementById('currency').value === 'JPY' ? '1' : '0';
         }
-
     </script>
-
 </body>
 </html>
