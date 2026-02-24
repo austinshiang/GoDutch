@@ -259,24 +259,29 @@
                 <button onclick="downloadFromCloud()" class="w-full bg-white border border-emerald-600 text-emerald-600 text-[11px] font-bold p-2 rounded-lg">手動刷新數據</button>
             </div>
 
-            <div class="snow-card">
-                <h3 class="font-bold text-blue-800 mb-4 text-sm"><i class="fas fa-edit mr-2"></i> 支出登錄</h3>
-                <div class="space-y-3">
-                    <input type="text" id="payer" list="name-list" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="誰付錢？">
-                    <datalist id="name-list"></datalist>
-                    <div class="flex gap-2">
-                        <input type="number" id="amount" class="flex-1 p-3 border border-gray-200 rounded-xl text-sm" placeholder="金額" inputmode="numeric">
-                        <select id="currency" onchange="updateRateUI()" class="w-24 p-3 border border-gray-200 rounded-xl text-sm bg-gray-50 font-bold">
-                            <option value="TWD">台幣</option>
-                            <option value="JPY" selected>日幣</option>
-                        </select>
-                    </div>
-                    <div id="rate-display" class="text-[10px] text-blue-600 font-bold text-center">匯率讀取中...</div>
-                    <input type="text" id="item" class="w-full p-3 border border-gray-200 rounded-xl text-sm" placeholder="項目說明">
-                    <div id="members-area" class="flex flex-wrap gap-2 bg-slate-50 p-3 rounded-xl border border-dashed border-gray-300"></div>
-                    <button onclick="addRecord()" id="save-btn" class="w-full bg-blue-600 text-white font-bold p-4 rounded-xl shadow-lg active:scale-95 transition-all">確認送出並同步</button>
-                </div>
-            </div>
+            <div class="snow-card w-full box-border overflow-hidden">
+    <h3 class="font-bold text-blue-800 mb-4 text-sm"><i class="fas fa-edit mr-2"></i> 支出登錄</h3>
+    <div class="space-y-3">
+        <input type="text" id="payer" list="name-list" class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 outline-none" placeholder="誰付錢？">
+        <datalist id="name-list"></datalist>
+
+        <div class="flex gap-2 w-full">
+            <input type="number" id="amount" class="min-w-0 flex-1 p-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 outline-none" placeholder="金額" inputmode="numeric">
+            <select id="currency" onchange="updateRateUI()" class="w-[85px] shrink-0 p-3 border border-gray-200 rounded-xl text-[12px] bg-gray-50 font-bold">
+                <option value="TWD">台幣</option>
+                <option value="JPY" selected>日幣</option>
+            </select>
+        </div>
+
+        <div id="rate-display" class="text-[10px] text-blue-600 font-bold text-center bg-blue-50 py-1 rounded-lg">匯率讀取中...</div>
+
+        <input type="text" id="item" class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 outline-none" placeholder="項目說明">
+
+        <div id="members-area" class="flex flex-wrap gap-2 bg-slate-50 p-3 rounded-xl border border-dashed border-gray-300 min-h-[50px]"></div>
+
+        <button onclick="addRecord()" id="save-btn" class="w-full bg-blue-600 text-white font-bold p-4 rounded-xl shadow-lg active:scale-95 transition-all text-sm">確認送出並同步</button>
+    </div>
+</div>
 
             <div id="calculation-results" class="space-y-4">
                 <div class="snow-card bg-blue-50 border-blue-100">
@@ -516,4 +521,5 @@
     </script>
 </body>
 </html>
+
 
